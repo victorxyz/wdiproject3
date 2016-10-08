@@ -6,6 +6,11 @@ class User < ApplicationRecord
   has_secure_password
 
   # ASSOCIATIONS
+  has_many :credit_cards, dependent: :nullify
+  has_many :individual_pledges, dependent: :nullify
+  has_many :goals, dependent: :nullify
+  has_one :user_task
+
 
   # VALIDATIONS
   validates :first_name,
