@@ -23,7 +23,7 @@ class PledgesController < ApplicationController
     if @pledge.save!
       redirect_to pledge_path, notice: 'pledge was successfully created.'
     else
-      redirect_to pledge_path, notice: 'Irsyad says no.'
+      redirect_to pledge_path, notice: 'pledge failed'
     end
   end
 
