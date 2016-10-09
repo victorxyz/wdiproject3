@@ -9,8 +9,14 @@
   </head>
 
   <body>
+
     <%= render "partials/header" %>
-    <%= yield %>
-    <%= render "partials/flash" %>
+    <div class="container">
+      <%= yield %>
+      <br>
+      <br>
+      <%= render "partials/flash" %>
+
+    </div>
   </body>
 </html>

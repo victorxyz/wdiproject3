@@ -1,26 +1,27 @@
-<h1><%= link_to "Shivalrous Run", root_path %></h1>
-<ul class="nav">
-  <% if current_user.present? %>
-    <li class="nav-item">
-      <%= link_to "#{current_user.name}", profile_path, class: "nav-link" %>
+<nav>
+  <input class="menu-btn navbar" type="checkbox" id="menu-btn">
+  <label class="menu-icon navbar" for="menu-btn"><span class="navicon"></span></label>
+  <ul id="nav-menu">
+    <li class="nav-label">
+      <h3><%= link_to "Chivalrous Run", root_path, class: "nav-label"%></h3>
     </li>
-    <li class="nav-item">
-      <%= link_to 'Edit Profile', profile_edit_path, class: "nav-link" %>
+    <% if current_user.present? %>
+    <li class="nav-right">
+      <%= link_to "#{current_user.name}", profile_path %>
     </li>
-      <% if current_user.is_admin? %>
-        <li class="nav-item">
-          <%= link_to "Manage Users", users_path, class: "nav-link" %>
-        </li>
-      <% end %>
-    <li class="nav-item">
-      <%= link_to 'Logout', logout_path, class: "nav-link", method: :delete %>
+    <li class="nav-right">
+      <%= link_to 'Edit Profile', profile_edit_path %>
     </li>
-  <% else %>
-    <li class="nav-item">
-      <%= link_to 'Register', register_path, class: "nav-link" %>
+    <li class="nav-right">
+      <%= link_to 'Logout', logout_path, method: :delete %>
     </li>
-    <li class="nav-item">
-      <%= link_to 'Login', login_path, class: "nav-link" %>
+    <% else %>
+    <li class="nav-right">
+      <%= link_to 'Register', register_path%>
     </li>
-  <% end %>
-</ul>
+    <li class="nav-right">
+      <%= link_to 'Login', login_path%>
+    </li>
+    <% end %>
+  </ul>
+</nav>
