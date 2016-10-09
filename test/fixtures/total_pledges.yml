@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  pledged_total: 1.5
-
-two:
-  pledged_total: 1.5

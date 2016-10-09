@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   root 'users#show'
 
   # AUTHENTICATION
@@ -18,5 +19,10 @@ Rails.application.routes.draw do
   end
 
   # RESOURCES
+  resources :goals, except: [:destroy, :update, :edit]
+  resources :goals, only: [:destroy, :update, :edit] do
+    patch 'admin' => "users#toggle_admin", on: :member
+  end
+  resources :pledges, except: [:destroy, :update, :edit]
 
 end

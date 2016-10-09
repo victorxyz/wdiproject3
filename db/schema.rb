@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008083721) do
+ActiveRecord::Schema.define(version: 20161008162351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,35 +35,25 @@ ActiveRecord::Schema.define(version: 20161008083721) do
     t.text     "description"
     t.float    "target_amount"
     t.float    "penalty_amount"
-    t.boolean  "is_goal_validated"
-    t.datetime "deadline"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.boolean  "is_goal_validated",    default: false
+    t.date     "deadline"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.integer  "beneficiary_id"
+    t.boolean  "is_goal_completed",    default: false
+    t.float    "total_pledged_amount", default: 0.0
     t.index ["beneficiary_id"], name: "index_goals_on_beneficiary_id", using: :btree
     t.index ["user_id"], name: "index_goals_on_user_id", using: :btree
   end
 
-  create_table "individual_pledges", force: :cascade do |t|
+  create_table "pledges", force: :cascade do |t|
     t.integer  "user_id"
     t.float    "contributed_amount"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.integer  "total_pledge_id"
-    t.index ["total_pledge_id"], name: "index_individual_pledges_on_total_pledge_id", using: :btree
-    t.index ["user_id"], name: "index_individual_pledges_on_user_id", using: :btree
-  end
-
-  create_table "total_pledges", force: :cascade do |t|
-    t.float    "pledged_total"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "user_tasks", force: :cascade do |t|
-    t.boolean  "success"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "goal_id"
+    t.index ["goal_id"], name: "index_pledges_on_goal_id", using: :btree
+    t.index ["user_id"], name: "index_pledges_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -80,6 +70,6 @@ ActiveRecord::Schema.define(version: 20161008083721) do
   add_foreign_key "credit_cards", "users"
   add_foreign_key "goals", "beneficiaries"
   add_foreign_key "goals", "users"
-  add_foreign_key "individual_pledges", "total_pledges"
-  add_foreign_key "individual_pledges", "users"
+  add_foreign_key "pledges", "goals"
+  add_foreign_key "pledges", "users"
 end

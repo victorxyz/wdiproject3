@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IndividualPledgeTest < ActiveSupport::TestCase
+class PledgeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :current_user
 
   # Methods below are inherited by all controllers
   # ------------------------------------------------

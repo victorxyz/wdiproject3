@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Goals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Beneficiary</th>
+      <th>User</th>
+      <th>Target amount</th>
+      <th>Penalty amount</th>
+      <th>Deadline</th>
+      <th>Pledged amount to date</th>
+      <th>Pledge target met?</th>
+      <th>Goal completed?</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><%= goal.title %></td>
+        <td><%= goal.description %></td>
+        <td><%= goal.beneficiary.name %></td>
+        <td><%= goal.user.name %></td>
+        <td><%= goal.target_amount %></td>
+        <td><%= goal.penalty_amount %></td>
+        <td><%= goal.deadline %></td>
+        <td><%= goal.total_pledged_amount %></td>
+        <td><%= goal.is_goal_validated %></td>
+        <td><%= goal.is_goal_completed %></td>
+        <td><%= link_to 'Pledge', goal %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Book new goal', new_goal_path %>
