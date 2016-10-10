@@ -48,9 +48,9 @@ ActiveRecord::Schema.define(version: 20161008162351) do
 
   create_table "pledges", force: :cascade do |t|
     t.integer  "user_id"
-    t.float    "contributed_amount"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.float    "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "goal_id"
     t.index ["goal_id"], name: "index_pledges_on_goal_id", using: :btree
     t.index ["user_id"], name: "index_pledges_on_user_id", using: :btree

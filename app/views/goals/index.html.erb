@@ -2,17 +2,17 @@
     <div class="row">
     <% @goals.each do |goal| %>
       <div class="one-third column" style="border: solid 0.5px #555; border-radius:10px;padding: 20px;">
-        <h3><%= goal.title %></h3>
-        <p><%= goal.description %></p>
-        <p><%= goal.beneficiary.name %></p>
-        <p><%= goal.user.name %></p>
-        <p>$<%= goal.target_amount %></p>
-        <p>$<%= goal.penalty_amount %></p>
-        <p><%= goal.deadline %></p>
-        <p><%= goal.total_pledged_amount %></p>
-        <p><%= goal.is_goal_validated %></p>
-        <p><%= goal.is_goal_completed %></p>
-        <p><%= button_to 'Pledge', goal, :method => :get, class: "hvr-bounce-to-right" %></p>
+        <h6 class="project-title"><strong><%= goal.title %></strong></h6>
+        <p class="project-byline"><%= goal.user.name %></p>
+        <p class="project-content"><%= goal.description %></p>
+        <p class="project-content"><%= goal.beneficiary.name %></p>
+        <p class="project-content">$<%= goal.target_amount %></p>
+        <p class="project-content">$<%= goal.penalty_amount %></p>
+        <p class="project-content"><%= goal.deadline %></p>
+        <p class="project-content"><%= goal.total_pledged_amount %></p>
+        <p class="project-content"><%= goal.is_goal_validated %></p>
+        <p class="project-content"><%= goal.is_goal_completed %></p>
+        <p><%= link_to 'Pledge', new_pledge_path(:id => goal.id), :method => :get, class: "hvr-bounce-to-right" %></p>
       </div>
     <% end %>
     </div>

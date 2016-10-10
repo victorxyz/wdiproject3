@@ -1,7 +1,7 @@
 <div class="container">
   <div class="container">
     <div class="container">
-      <div class="twelve columns" style="margin: 0 auto; border: solid 1px #555;border-radius:10px; padding: 20px; margin-top: 50px;">
+      <div class="twelve columns space-top" style="margin-top: 50px;">
         <%= form_for :user do |f| %>
           <div class="field">
             <%= f.label :email %>
@@ -14,7 +14,7 @@
           <div class="action">
             <%= f.submit "Login" %>
           </div>
-          <%= link_to 'New user? Sign up here', register_path %>  
+          <%= link_to 'New user? Sign up here', register_path %>
         <% end %>
       </div>
     </div>

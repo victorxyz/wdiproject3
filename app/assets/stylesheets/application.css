@@ -247,11 +247,37 @@ label.navbar, input[type=checkbox].navbar {
   transition-timing-function: ease-out;
 }
 .hvr-bounce-to-right:hover, .hvr-bounce-to-right:focus, .hvr-bounce-to-right:active {
-  color: white;
+  color: tomato;
 }
 .hvr-bounce-to-right:hover:before, .hvr-bounce-to-right:focus:before, .hvr-bounce-to-right:active:before {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+.space-top {
+  margin-top: 50px;
+  margin: 0 auto;
+  border: solid 1px #555;
+  border-radius:10px;
+  padding: 20px;
+}
+
+.project-title {
+
+  margin-bottom: 0.25em
+}
+
+.project-byline {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #3D3D66;
+}
+
+.project-content {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #3D3D66;
+
 }

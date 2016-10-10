@@ -11,7 +11,7 @@ class PledgesController < ApplicationController
   # GET /pledge/:specialityid/new
   def new
     @pledge = Pledge.new
-    @goals = Goal.all
+    @goals = Goal.where(id: params[:id])
   end
   # GET /pledge/1/edit
   def edit
@@ -21,9 +21,9 @@ class PledgesController < ApplicationController
     @pledge = Pledge.new(pledge_params)
     @pledge.user_id = current_user.id if current_user
     if @pledge.save!
-      redirect_to pledge_path, notice: 'pledge was successfully created.'
+      redirect_to goals_path, notice: 'pledge was successfully created.'
     else
-      redirect_to pledge_path, notice: 'pledge failed'
+      redirect_to goals_path, notice: 'Irsyad says no.'
     end
   end
 
@@ -50,7 +50,7 @@ class PledgesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pledge_params
-      params.require(:pledge).permit(:contributed_amount, :goal_id)
+      params.require(:pledge).permit(:amount, :goal_id)
     end
 
 end
