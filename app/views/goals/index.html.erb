@@ -5,14 +5,32 @@
         <h6 class="project-title"><strong><%= goal.title %></strong></h6>
         <p class="project-byline"><%= goal.user.name %></p>
         <p class="project-content"><%= goal.description %></p>
-        <p class="project-content"><%= goal.beneficiary.name %></p>
-        <p class="project-content">$<%= goal.target_amount %></p>
-        <p class="project-content">$<%= goal.penalty_amount %></p>
-        <p class="project-content"><%= goal.deadline %></p>
-        <p class="project-content"><%= goal.total_pledged_amount %></p>
-        <p class="project-content"><%= goal.is_goal_validated %></p>
-        <p class="project-content"><%= goal.is_goal_completed %></p>
-        <p><%= link_to 'Pledge', new_pledge_path(:id => goal.id), :method => :get, class: "hvr-bounce-to-right" %></p>
+        <p class="project-content-extra"><%= goal.beneficiary.name %></p>
+        <ul class="twelve columns">
+          <li class="project-footer">
+            <strong>$<%= goal.target_amount %></strong>
+            <span class="project-footer-extra">Target</span>
+          </li>
+          <li class="project-footer">
+            <strong>$<%= goal.penalty_amount %></strong>
+            <span class="project-footer-extra">Penalty</span>
+          </li>
+          <li class="project-footer">
+            <strong><%= goal.deadline %></strong>
+            <span class="project-footer-extra">deadline</span>
+          </li>
+        </ul>
+        <ul class="twelve columns">
+          <li class="project-footer">
+            <strong><%= goal.total_pledged_amount %></strong>
+            <span class="project-footer-extra">Total pledged</span>
+          </li>
+        </ul>
+        <p class="project-footer"><%= goal.is_goal_validated %></p>
+        <p class="project-footer"><%= goal.is_goal_completed %></p>
+        <div class="twelve column">
+          <%= link_to 'Pledge', new_pledge_path(:id => goal.id), :method => :get, class: "hvr-bounce-to-right" %>
+        </div>
       </div>
     <% end %>
     </div>
