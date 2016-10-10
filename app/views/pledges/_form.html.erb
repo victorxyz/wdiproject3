@@ -15,20 +15,21 @@
 
       <div class="field">
         <%= f.label :amount %>
-        <%= f.text_field :amount, placeholder: "Pledge amount", class: "u-full-width" %>
+        <%= f.number_field :amount, placeholder: "Pledge amount", class: "u-full-width" %>
       </div>
 
+      <%= f.hidden_field :goal_id, :value=> id %>
 
-      <div class="field">
+      <!-- <div class="field">
         <%= f.label :goal_id %>
-        <%= f.select :goal_id, goals.collect {|x| [x.title, x.id]}, class: "u-full-width" %>
-      </div>
+        <%= f.select :goal_id, goals.collect {|x| [x.title, x.id]}, {}, {:disabled => true} %>
+      </div> -->
 
       <div class="actions">
         <%= f.submit %>
       </div>
     <% end %>
 
-    <%= link_to 'Back', pledges_path %>
+    <%= link_to 'Back', goals_path %>
   </div>
 </div>

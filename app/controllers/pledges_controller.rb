@@ -12,6 +12,7 @@ class PledgesController < ApplicationController
   def new
     @pledge = Pledge.new
     @goals = Goal.where(id: params[:id])
+    @id = params[:id]
   end
   # GET /pledge/1/edit
   def edit
@@ -20,16 +21,18 @@ class PledgesController < ApplicationController
   def create
     @pledge = Pledge.new(pledge_params)
     @pledge.user_id = current_user.id if current_user
-    if @pledge.save!
+    if @pledge.save
       redirect_to goals_path, notice: 'pledge was successfully created.'
     else
-      redirect_to goals_path, notice: 'Irsyad says no.'
+      @goals = Goal.where(id: @pledge.goal.id)
+      render :new
     end
   end
 
   # PATCH/PUT /pledge/1
   def update
     if @pledge.update(pledge_params)
+
       redirect_to @pledge, notice: 'pledge was successfully updated.'
     else
       render :edit
