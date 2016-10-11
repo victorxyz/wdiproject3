@@ -3,7 +3,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   # MIXINS
-  has_secure_password
+  has_secure_password validations: false
 
   # ASSOCIATIONS
   has_many :credit_cards, dependent: :nullify
@@ -17,8 +17,7 @@ class User < ApplicationRecord
     length: { in: 3..50 }
 
   validates :family_name,
-      presence: true,
-      length: { in: 3..50 }
+      length: { maximum: 50 }
 
   validates :email,
     presence: true,
@@ -26,7 +25,7 @@ class User < ApplicationRecord
     uniqueness: {case_sensitive: false},
     format: VALID_EMAIL_REGEX
 
-  validates :password, length: { in: 8..72 } , :if => :password_needs_validating?
+  validates :password, length: { in: 8..72 }, confirmation: true, :if => :password_needs_validating?
 
   # custom method to ensure we have atleast one admin user
   validate :atleast_one_admin
@@ -36,7 +35,7 @@ class User < ApplicationRecord
 
   # PUBLIC METHODS
   def name
-    "#{first_name.titlecase} #{family_name.titlecase}"
+    "#{first_name.titlecase} #{family_name.try(:titlecase)}"
   end
   def self.authenticate(params)
     User.find_by_email(params[:email]).try(:authenticate, params[:password])
@@ -52,7 +51,7 @@ class User < ApplicationRecord
   end
 
   def password_needs_validating?
-    if new_record? || password.present?
+    if (new_record? && provider_id.blank?) || password.present?
       true
     else
       false
@@ -62,6 +61,6 @@ class User < ApplicationRecord
   def downcase_fields
     self.email = email.downcase
     self.first_name = first_name.downcase
-    self.family_name = family_name.downcase
+    self.family_name = family_name.downcase unless family_name.blank?
   end
 end
