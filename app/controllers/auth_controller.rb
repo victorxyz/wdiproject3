@@ -7,6 +7,8 @@ class AuthController < ApplicationController
   #  if exisiting_user.present?
   #    ...
   #  end
+
+
    # use provided user info to find or create the user in our own database
    # this populates fields for the user model we created
    user = User.find_or_create_by(provider_id: provider_user['uid'], provider: params[:provider]) do |u|
@@ -16,7 +18,7 @@ class AuthController < ApplicationController
    end
 
    unless user.persisted?
-     puts "there was an error"
+     puts "there was an error in creating a new user"
    end
 
    puts user.first_name
@@ -31,7 +33,8 @@ class AuthController < ApplicationController
 
  def failure
    #TODO: display error page
-   render plain: 'this is a failure'
+  #  render plain: 'this is a failure'
+   redirect_to "/register"
  end
 
 end
