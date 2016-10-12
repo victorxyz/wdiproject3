@@ -13,3 +13,11 @@
     <strong>Email:</strong>
     <%= @user.email %>
   </p>
+
+
+<!-- Add profile pic here as an example of how to take profile pic from facebook account -->
+    <p>
+      <strong>Profile Pic:</strong>
+      <%= image_tag(@user.provider_img)%>
+      <!-- <%= @user.provider_img %> -->
+    </p>
