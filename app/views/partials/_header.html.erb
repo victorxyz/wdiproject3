@@ -15,12 +15,18 @@
     <li class="nav-right">
       <%= link_to 'Logout', logout_path, method: :delete %>
     </li>
+    <li class="nav-right social-share-button">
+      <%= social_share_button_tag("test") %>
+    </li>
     <% else %>
     <li class="nav-right">
       <%= link_to 'Register', register_path%>
     </li>
     <li class="nav-right">
       <%= link_to 'Login', login_path%>
+    </li>
+    <li class="nav-right">
+      <%= social_share_button_tag("test") %>
     </li>
     <% end %>
   </ul>
